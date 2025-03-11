@@ -1,0 +1,23 @@
+name: ankerctl
+summary: a status and control utility for the AnkerMake M5C
+description: |
+    A command-line interface and web UI for monitoring, controlling
+    and interfacing with AnkerMake M5 and M5C 3D printers.
+version: test
+base: core24
+confinement: strict
+
+parts:
+  ankerctl:
+    plugin: python
+    python-requirements: ["requirements.txt"]
+    source: .
+  ankerctl-source:
+    plugin: dump
+    source: .
+
+apps:
+  ankerctl:
+    command: bin/python $SNAP/ankerctl.py
+    plugs:
+      - network
